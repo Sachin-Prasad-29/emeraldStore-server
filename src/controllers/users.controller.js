@@ -2,11 +2,9 @@ const { createHttpError } = require('../errors/custom-error');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-
-
 const register = async (req, res, next) => {
-    const data= req.body
-    const insertedUser = await User.create(data);
+    const user= req.body
+    const insertedUser = await User.create(user);
     console.log(insertedUser)
     if (!insertedUser) {
         const error = createHttpError('Bad Credentials', 400);
@@ -27,3 +25,10 @@ const login = async (req, res, next) => {
 module.exports = {
     register, login
 }
+
+
+
+const data = req.body;
+
+const contactDetails = await Contact.create(data);
+

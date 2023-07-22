@@ -17,20 +17,7 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-const emailPat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
-const passwordPat = /^(?=.[0-9])(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&]{8,16}$/;
 
-// we can customize the schema further before model is created
-userSchema
-    .path('email')
-    .validate((email) => emailPat.test(email), 'Invalid email. Please make sure this is valid');
-
-userSchema
-    .path('password')
-    .validate(
-        (password) => passwordPat.test(password),
-        'Password must have at least 1 upper case, 1 lower case, 1 digit, 1 special characters, and should be 8 characters in length.'
-    );
 
 const SALT_FACTOR = 10;
 
